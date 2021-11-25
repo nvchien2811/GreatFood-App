@@ -1,15 +1,18 @@
 import React from 'react';
 import {View,StyleSheet,Dimensions,Image,Text,TouchableOpacity} from 'react-native';
 import {getPriceVND} from '../../Contain/getPriceVND';
+import {setHTTP} from '../../Utils/setHTTP';
+import { useSelector } from 'react-redux';
 export default function ItemFood(props){
     const maxlimitText = 18;
+    const link = useSelector(s=>s.link)
     const handleNav = ()=>{
         props.navigation();
     }
     return(
         <TouchableOpacity onPress={handleNav}>
         <View style={styles.wrapperItemFood}>
-            <Image style={{height:props.imgheight}} source={{uri:props.item.hinhanh}}/>
+            <Image style={{height:props.imgheight}} source={{uri:setHTTP(props.item.hinhanh,link)}}/>
             <Text style={styles.textItemFood}>
                 {((props.item.ten).length > maxlimitText) ? 
                 (((props.item.ten).substring(0,maxlimitText-3)) + '...') 

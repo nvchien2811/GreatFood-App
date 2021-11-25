@@ -11,7 +11,9 @@ import Spinner from 'react-native-loading-spinner-overlay';
 import {updateSearchMenu} from '../../Redux/store';
 import {getAmountCart} from '../../Contain/getAmount';
 import * as FetchAPI from '../../Utils/fetchData';
+import {setHTTP} from '../../Utils/setHTTP';
 import { checkUser } from '../../Contain/async';
+
 export default function Home({navigation}){
   // const [search,setSearch] = useState('');
   const [dataMenu,setDataMenu] = useState([]);
@@ -160,7 +162,7 @@ export default function Home({navigation}){
     return(
       <TouchableOpacity onPress={()=>navigation.navigate('Menu',{itemId:item.iddanhmuc,nameMenu:item.tendanhmuc})} style={styles.wrapperitemMenu} >
         <View>
-            <Image  style={ styles.imgItemMenu } source={{ uri:item.hinhanh }} />
+            <Image  style={ styles.imgItemMenu } source={{ uri:setHTTP(item.hinhanh,link) }} />
             <Text style={{ paddingTop:5,textAlign:'center' }}>{item.tendanhmuc}</Text> 
         </View>  
       </TouchableOpacity>

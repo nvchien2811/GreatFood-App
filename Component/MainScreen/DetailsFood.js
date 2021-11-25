@@ -7,13 +7,13 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import Feather from 'react-native-vector-icons/Feather';
 import AsyncStorage from '@react-native-community/async-storage';
 import HTML from 'react-native-render-html';
-import { useDispatch } from 'react-redux';
+import { useDispatch,useSelector } from 'react-redux';
 import { getAmountCart,getAmountFavorite } from '../../Contain/getAmount';
 import {getPriceVND} from '../../Contain/getPriceVND';
 import ParallaxScrollView from 'react-native-parallax-scroll-view';
 import ModalUse from '../Elements/ModalUse';
 import { IGNORED_TAGS } from 'react-native-render-html/src/HTMLUtils';
-
+import {setHTTP} from '../../Utils/setHTTP';
 export default function DetailsFood({route,navigation}){
     const {listitem} = route.params;
     const [amount,setAmount] = useState(1);
@@ -21,6 +21,7 @@ export default function DetailsFood({route,navigation}){
     const dispatch = useDispatch();
     const [modalVisible,setModalVisible] = useState(false)
     const [modalNotifyVisible,setModalNotifyVisible] = useState(false)
+    const link = useSelector(e=>e.link)
     useEffect(()=>{
         getStatusFavorite();
     },[])
@@ -175,7 +176,7 @@ export default function DetailsFood({route,navigation}){
                 <Ionicons  name="close" size={18} color="rgba(255,255,255,0.7)"/>
             </TouchableOpacity>
         </View>
-            <Image style={styles.img} source={{uri:listitem.hinhanh}}/>
+            <Image style={styles.img} source={{uri:setHTTP(listitem.hinhanh,link)}}/>
         <View style={styles.share}>
             <TouchableOpacity style={styles.icon} onPress={handleShare}>
                 <MaterialIcons  name="share" size={18} color="rgba(255,255,255,0.8)"/>

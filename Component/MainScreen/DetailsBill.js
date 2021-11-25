@@ -5,6 +5,7 @@ import { useSelector } from 'react-redux';
 import * as FetchAPI from '../../Utils/fetchData';
 import ModalUse from '../Elements/ModalUse';
 import Spinner from 'react-native-loading-spinner-overlay';
+import {setHTTP} from '../../Utils/setHTTP';
 export default function DetailsBill({route,navigation}){
     const link = useSelector((e)=>e.link);
     const [dataFood, setdataFood] = useState();
@@ -77,7 +78,7 @@ export default function DetailsBill({route,navigation}){
         return(
             <View style={styles.wrapperItemFood}>
                 <View>
-                    <Image source={{ uri:item.hinhanh }} style={styles.imgItemFood}/>
+                    <Image source={{ uri:setHTTP(item.hinhanh,link) }} style={styles.imgItemFood}/>
                 </View>
                 <View style={styles.groupNamePrice}>
                     <Text style={{ fontWeight:'bold' }}>{item.ten}</Text>

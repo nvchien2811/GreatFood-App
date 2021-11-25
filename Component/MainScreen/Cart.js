@@ -14,6 +14,7 @@ import {checkUser} from '../../Contain/async';
 import ModalUse from '../Elements/ModalUse';
 import { getInfoUser } from '../../Contain/async';
 import {getPriceVND} from '../../Contain/getPriceVND';
+import {setHTTP} from '../../Utils/setHTTP';
 export default function Cart({navigation}){
     const link = useSelector(state=>state.link);
     const [dataCart,setDataCart] = useState();
@@ -193,7 +194,7 @@ export default function Cart({navigation}){
             >
             <View style={styles.wrapperItem}>
                 <View>
-                    <Image style={styles.imgItem} source={{ uri:item.hinhanh }}/>
+                    <Image style={styles.imgItem} source={{ uri:setHTTP(item.hinhanh,link) }}/>
                 </View>
                 <View style={styles.descrepItem}>
                     <Text style={{ fontSize:16,fontWeight:'bold' }}>{item.ten}</Text>
